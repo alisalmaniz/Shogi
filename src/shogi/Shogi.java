@@ -16,6 +16,18 @@ public class Shogi {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Board board = new Board();
+        board.firstData();
+        board.print();
+        
+        Man man = new Man();
+        B b =new B();
+        b.move1Right();
+        
+        
+        
+        
     }
     
 }
