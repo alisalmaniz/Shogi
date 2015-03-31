@@ -19,7 +19,7 @@ public class Shogi {
         
         Board board = new Board();
         board.firstData();
-        board.print();
+        board.test();
         
         Man man = new Man();
         B b =new B();

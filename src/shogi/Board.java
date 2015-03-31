@@ -5,18 +5,21 @@
  */
 package shogi;
 
+
 /**
  *
  * @author Ali salmani
  */
 public class Board {
     
-    private String[][] Board;
+    protected String[][] Board;
+    protected int player;
     
     
     public Board(){
         
         Board = new String[9][9];
+        player = 1;
         
     }
     
@@ -57,7 +60,7 @@ public class Board {
         Board[6][6]="R2.g";
         Board[6][7]="R2.h";
         Board[6][8]="R2.i";
-            
+
         Board[8][0]="L2.a";
         Board[8][1]="N2.a";
         Board[8][2]="S2.a";
@@ -72,28 +75,35 @@ public class Board {
         
         
     }
-    
+/*    
+    public void test(){
+        System.out.print("hello");
+        this.moveCursor(0, 0);
+        System.out.print("ali");
+    }
+*/    
     public void print(){
         
         for(int i=0; i<9; i++){
             for(int j=0; j<9; j++)
                 System.out.print("    "+ Board[i][j]+ "    ");
-              
+               
             System.out.println("\n\n");
         }
         
     }
     
+    
+    
     public void showMenu(){
         
-        int Player=1;
-        System.out.println("Player "+ Player +" :");
+        System.out.println("Player " + (player%2==0 ? 2 : 1) +" :\n");
         
         for(int i=0; i<9; i++)
             for(int j=0; j<9; j++){
-                if(Board[i][j]=="P1.a"){
+                if(Board[i][j].equals("P1.a")){
                     
-                    if(Board[i+1][j]=="----"){
+                    if(Board[i+1][j].equals("----")){
                         
                         System.out.println("1.");
                         
@@ -103,7 +113,7 @@ public class Board {
                 
             }
     
-        
+        player++;
     }
     
 }
