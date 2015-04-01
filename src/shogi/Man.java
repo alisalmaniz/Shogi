@@ -11,13 +11,14 @@ package shogi;
  */
 public class Man extends Board{
     
-    protected int i;
-    protected int j;
-    protected int xK;
-    protected int yK;
-    protected int xMan;
-    protected int yMan;
-    protected int kish;
+    static int i;
+    static int j;
+    static int xK;
+    static int yK;
+    static int xMan;
+    static int yMan;
+    static int kish;
+    static String[] change;
     
     public Man(){
         
@@ -27,28 +28,44 @@ public class Man extends Board{
         yK=0;
         xMan=0;
         yMan=0;
-        kish=0;
+        kish=-1;
+        change = new String [3];
+        change[0]="*";
+        change[1]="*";
+        change[2]="*";
+
     }
     
-    public void move1Right(){
+    public static String[] moveMan( String man){
         
+        change[0]="*";
+        change[1]="*";
+        change[2]="*";
         
-        
+        if(man.charAt(0)=='P')
+            return P.move(man);
+        //else if(man.charAt(0)=='L')
+            
+        return change;    //spurious
     }
     
-    public int search(String Man12 , char ij){
+    
+
+    
+    public static int search(String Man12 , char ij){
         
         searchfor:
             for( i=0; i<9; i++)
                 for( j=0; j<9; j++)
-                    if(Board[i][j].equals(Man12))
+                    if(board[i][j].equals(Man12))
                         return ij=='i' ? i : j;
         return -1;
                         
     }
     
-    public void kish(){
+    public static int isKish(){
         
+        kish=-1;
         if(player%2==1){
             
             xK = search(" K1 " , 'i');
@@ -104,19 +121,19 @@ public class Man extends Board{
             if(xK > xMan && yK==yMan){
                 if(xK==xMan-1)
                     kish=10;
-                if(xK==xMan-2 && Board[xMan+1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
                     kish=11;
-                if(xK==xMan-3 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=12;
-                if(xK==xMan-4 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=13;
-                if(xK==xMan-5 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=14;
-                if(xK==xMan-6 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=15;
-                if(xK==xMan-7 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=16;
-                if(xK==xMan-8 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----") && Board[xMan+7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=17;
             }
             
@@ -125,19 +142,19 @@ public class Man extends Board{
             if(xK > xMan && yK==yMan){
                 if(xK==xMan-1)
                     kish=18;
-                if(xK==xMan-2 && Board[xMan+1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
                     kish=19;
-                if(xK==xMan-3 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=20;
-                if(xK==xMan-4 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=21;
-                if(xK==xMan-5 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=22;
-                if(xK==xMan-6 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=23;
-                if(xK==xMan-7 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=24;
-                if(xK==xMan-8 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----") && Board[xMan+7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=25;
             }
             
@@ -216,70 +233,70 @@ public class Man extends Board{
             if( Math.abs(xK - xMan) == Math.abs(yK - yMan) ){
                 if(xK==xMan-1 && yK==yMan-1)
                     kish=52;
-                if(xK==xMan-2 && yK==yMan-2 && Board[xMan-1][yMan-1].equals("----"))
+                if(xK==xMan-2 && yK==yMan-2 && board[xMan-1][yMan-1].equals("----"))
                     kish=53;
-                if(xK==xMan-3 && yK==yMan-3 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----"))
+                if(xK==xMan-3 && yK==yMan-3 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----"))
                     kish=54;
-                if(xK==xMan-4 && yK==yMan-4 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----"))
+                if(xK==xMan-4 && yK==yMan-4 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----"))
                     kish=55;
-                if(xK==xMan-5 && yK==yMan-5 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----"))
+                if(xK==xMan-5 && yK==yMan-5 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----"))
                     kish=56;
-                if(xK==xMan-6 && yK==yMan-6 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----") && Board[xMan-5][yMan-5].equals("----"))
+                if(xK==xMan-6 && yK==yMan-6 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----") && board[xMan-5][yMan-5].equals("----"))
                     kish=57;
-                if(xK==xMan-7 && yK==yMan-7 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----") && Board[xMan-5][yMan-5].equals("----") && Board[xMan-6][yMan-6].equals("----"))
+                if(xK==xMan-7 && yK==yMan-7 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----") && board[xMan-5][yMan-5].equals("----") && board[xMan-6][yMan-6].equals("----"))
                     kish=58;
-                if(xK==xMan-8 && yK==yMan-8 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----") && Board[xMan-5][yMan-5].equals("----") && Board[xMan-6][yMan-6].equals("----") && Board[xMan-7][yMan-7].equals("----"))
+                if(xK==xMan-8 && yK==yMan-8 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----") && board[xMan-5][yMan-5].equals("----") && board[xMan-6][yMan-6].equals("----") && board[xMan-7][yMan-7].equals("----"))
                     kish=59;
                 
                 if(xK==xMan-1 && yK==yMan+1)
                     kish=60;
-                if(xK==xMan-2 && yK==yMan+2 && Board[xMan-1][yMan+1].equals("----"))
+                if(xK==xMan-2 && yK==yMan+2 && board[xMan-1][yMan+1].equals("----"))
                     kish=61;
-                if(xK==xMan-3 && yK==yMan+3 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----"))
+                if(xK==xMan-3 && yK==yMan+3 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----"))
                     kish=62;
-                if(xK==xMan-4 && yK==yMan+4 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----"))
+                if(xK==xMan-4 && yK==yMan+4 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----"))
                     kish=63;
-                if(xK==xMan-5 && yK==yMan+5 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----"))
+                if(xK==xMan-5 && yK==yMan+5 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----"))
                     kish=64;
-                if(xK==xMan-6 && yK==yMan+6 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----") && Board[xMan-5][yMan+5].equals("----"))
+                if(xK==xMan-6 && yK==yMan+6 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----") && board[xMan-5][yMan+5].equals("----"))
                     kish=65;
-                if(xK==xMan-7 && yK==yMan+7 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----") && Board[xMan-5][yMan+5].equals("----") && Board[xMan-6][yMan+6].equals("----"))
+                if(xK==xMan-7 && yK==yMan+7 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----") && board[xMan-5][yMan+5].equals("----") && board[xMan-6][yMan+6].equals("----"))
                     kish=66;
-                if(xK==xMan-8 && yK==yMan+8 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----") && Board[xMan-5][yMan+5].equals("----") && Board[xMan-6][yMan+6].equals("----") && Board[xMan-7][yMan+7].equals("----"))
+                if(xK==xMan-8 && yK==yMan+8 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----") && board[xMan-5][yMan+5].equals("----") && board[xMan-6][yMan+6].equals("----") && board[xMan-7][yMan+7].equals("----"))
                     kish=67;
                 
                 if(xK==xMan+1 && yK==yMan-1)
                     kish=68;
-                if(xK==xMan+2 && yK==yMan-2 && Board[xMan+1][yMan-1].equals("----"))
+                if(xK==xMan+2 && yK==yMan-2 && board[xMan+1][yMan-1].equals("----"))
                     kish=69;
-                if(xK==xMan+3 && yK==yMan-3 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----"))
+                if(xK==xMan+3 && yK==yMan-3 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----"))
                     kish=70;
-                if(xK==xMan+4 && yK==yMan-4 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----"))
+                if(xK==xMan+4 && yK==yMan-4 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----"))
                     kish=71;
-                if(xK==xMan+5 && yK==yMan-5 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----"))
+                if(xK==xMan+5 && yK==yMan-5 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----"))
                     kish=72;
-                if(xK==xMan+6 && yK==yMan-6 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----") && Board[xMan+5][yMan-5].equals("----"))
+                if(xK==xMan+6 && yK==yMan-6 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----") && board[xMan+5][yMan-5].equals("----"))
                     kish=73;
-                if(xK==xMan+7 && yK==yMan-7 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----") && Board[xMan+5][yMan-5].equals("----") && Board[xMan+6][yMan-6].equals("----"))
+                if(xK==xMan+7 && yK==yMan-7 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----") && board[xMan+5][yMan-5].equals("----") && board[xMan+6][yMan-6].equals("----"))
                     kish=74;
-                if(xK==xMan+8 && yK==yMan-8 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----") && Board[xMan+5][yMan-5].equals("----") && Board[xMan+6][yMan-6].equals("----") && Board[xMan+7][yMan-7].equals("----"))
+                if(xK==xMan+8 && yK==yMan-8 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----") && board[xMan+5][yMan-5].equals("----") && board[xMan+6][yMan-6].equals("----") && board[xMan+7][yMan-7].equals("----"))
                     kish=75;
                 
                 if(xK==xMan+1 && yK==yMan+1)
                     kish=76;
-                if(xK==xMan+2 && yK==yMan+2 && Board[xMan+1][yMan+1].equals("----"))
+                if(xK==xMan+2 && yK==yMan+2 && board[xMan+1][yMan+1].equals("----"))
                     kish=77;
-                if(xK==xMan+3 && yK==yMan+3 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----"))
+                if(xK==xMan+3 && yK==yMan+3 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----"))
                     kish=78;
-                if(xK==xMan+4 && yK==yMan+4 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----"))
+                if(xK==xMan+4 && yK==yMan+4 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----"))
                     kish=79;
-                if(xK==xMan+5 && yK==yMan+5 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----"))
+                if(xK==xMan+5 && yK==yMan+5 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----"))
                     kish=80;
-                if(xK==xMan+6 && yK==yMan+6 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----") && Board[xMan+5][yMan+5].equals("----"))
+                if(xK==xMan+6 && yK==yMan+6 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----") && board[xMan+5][yMan+5].equals("----"))
                     kish=81;
-                if(xK==xMan+7 && yK==yMan+7 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----") && Board[xMan+5][yMan+5].equals("----") && Board[xMan+6][yMan+6].equals("----"))
+                if(xK==xMan+7 && yK==yMan+7 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----") && board[xMan+5][yMan+5].equals("----") && board[xMan+6][yMan+6].equals("----"))
                     kish=82;
-                if(xK==xMan+8 && yK==yMan+8 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----") && Board[xMan+5][yMan+5].equals("----") && Board[xMan+6][yMan+6].equals("----") && Board[xMan+7][yMan+7].equals("----"))
+                if(xK==xMan+8 && yK==yMan+8 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----") && board[xMan+5][yMan+5].equals("----") && board[xMan+6][yMan+6].equals("----") && board[xMan+7][yMan+7].equals("----"))
                     kish=83;
             }
             
@@ -288,72 +305,72 @@ public class Man extends Board{
             if( xK==xMan ){
                 if(yK==yMan+1)
                     kish=84;
-                if(yK==yMan+2 && Board[xMan][yMan+1].equals("----"))
+                if(yK==yMan+2 && board[xMan][yMan+1].equals("----"))
                     kish=85;
-                if(yK==yMan+3 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----"))
+                if(yK==yMan+3 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----"))
                     kish=86;
-                if(yK==yMan+4 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----"))
+                if(yK==yMan+4 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----"))
                     kish=87;
-                if(yK==yMan+5 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----"))
+                if(yK==yMan+5 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----"))
                     kish=88;
-                if(yK==yMan+6 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----") && Board[xMan][yMan+5].equals("----"))
+                if(yK==yMan+6 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----") && board[xMan][yMan+5].equals("----"))
                     kish=89;
-                if(yK==yMan+7 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----") && Board[xMan][yMan+5].equals("----") && Board[xMan][yMan+6].equals("----"))
+                if(yK==yMan+7 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----") && board[xMan][yMan+5].equals("----") && board[xMan][yMan+6].equals("----"))
                     kish=90;
-                if(yK==yMan+8 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----") && Board[xMan][yMan+5].equals("----") && Board[xMan][yMan+6].equals("----") && Board[xMan][yMan+7].equals("----"))
+                if(yK==yMan+8 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----") && board[xMan][yMan+5].equals("----") && board[xMan][yMan+6].equals("----") && board[xMan][yMan+7].equals("----"))
                     kish=91;
                 
                 if(yK==yMan-1)
                     kish=92;
-                if(yK==yMan-2 && Board[xMan][yMan-1].equals("----"))
+                if(yK==yMan-2 && board[xMan][yMan-1].equals("----"))
                     kish=93;
-                if(yK==yMan-3 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----"))
+                if(yK==yMan-3 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----"))
                     kish=94;
-                if(yK==yMan-4 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----"))
+                if(yK==yMan-4 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----"))
                     kish=95;
-                if(yK==yMan-5 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----"))
+                if(yK==yMan-5 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----"))
                     kish=96;
-                if(yK==yMan-6 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----") && Board[xMan][yMan-5].equals("----"))
+                if(yK==yMan-6 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----") && board[xMan][yMan-5].equals("----"))
                     kish=97;
-                if(yK==yMan-7 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----") && Board[xMan][yMan-5].equals("----") && Board[xMan][yMan-6].equals("----"))
+                if(yK==yMan-7 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----") && board[xMan][yMan-5].equals("----") && board[xMan][yMan-6].equals("----"))
                     kish=98;
-                if(yK==yMan-8 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----") && Board[xMan][yMan-5].equals("----") && Board[xMan][yMan-6].equals("----") && Board[xMan][yMan-7].equals("----"))
+                if(yK==yMan-8 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----") && board[xMan][yMan-5].equals("----") && board[xMan][yMan-6].equals("----") && board[xMan][yMan-7].equals("----"))
                     kish=99;
             }
             
             if( yK==yMan ){
                 if(xK==xMan+1)
                     kish=100;
-                if(xK==xMan+2 && Board[xMan+1][yMan].equals("----"))
+                if(xK==xMan+2 && board[xMan+1][yMan].equals("----"))
                     kish=101;
-                if(xK==xMan+3 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----"))
+                if(xK==xMan+3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=102;
-                if(xK==xMan+4 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----"))
+                if(xK==xMan+4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=103;
-                if(xK==xMan+5 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----"))
+                if(xK==xMan+5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=104;
-                if(xK==xMan+6 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----"))
+                if(xK==xMan+6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=105;
-                if(xK==xMan+7 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----"))
+                if(xK==xMan+7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=106;
-                if(xK==xMan+8 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----") && Board[xMan+7][yMan].equals("----"))
+                if(xK==xMan+8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=107;
                 
                 if(xK==xMan-1)
                     kish=108;
-                if(xK==xMan-2 && Board[xMan-1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan-1][yMan].equals("----"))
                     kish=109;
-                if(xK==xMan-3 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----"))
                     kish=110;
-                if(xK==xMan-4 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----"))
                     kish=111;
-                if(xK==xMan-5 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----"))
                     kish=112;
-                if(xK==xMan-6 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----") && Board[xMan-5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----"))
                     kish=113;
-                if(xK==xMan-7 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----") && Board[xMan-5][yMan].equals("----") && Board[xMan-6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----"))
                     kish=114;
-                if(xK==xMan-8 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----") && Board[xMan-5][yMan].equals("----") && Board[xMan-6][yMan].equals("----") && Board[xMan-7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----") && board[xMan-7][yMan].equals("----"))
                     kish=115;
             }
             
@@ -413,19 +430,19 @@ public class Man extends Board{
             if(xK > xMan && yK==yMan){
                 if(xK==xMan-1)
                     kish=10;
-                if(xK==xMan-2 && Board[xMan+1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
                     kish=11;
-                if(xK==xMan-3 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=12;
-                if(xK==xMan-4 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=13;
-                if(xK==xMan-5 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=14;
-                if(xK==xMan-6 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=15;
-                if(xK==xMan-7 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=16;
-                if(xK==xMan-8 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----") && Board[xMan+7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=17;
             }
             
@@ -434,19 +451,19 @@ public class Man extends Board{
             if(xK > xMan && yK==yMan){
                 if(xK==xMan-1)
                     kish=18;
-                if(xK==xMan-2 && Board[xMan+1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
                     kish=19;
-                if(xK==xMan-3 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=20;
-                if(xK==xMan-4 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=21;
-                if(xK==xMan-5 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=22;
-                if(xK==xMan-6 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=23;
-                if(xK==xMan-7 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=24;
-                if(xK==xMan-8 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----") && Board[xMan+7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=25;
             }
             
@@ -525,70 +542,70 @@ public class Man extends Board{
             if( Math.abs(xK - xMan) == Math.abs(yK - yMan) ){
                 if(xK==xMan-1 && yK==yMan-1)
                     kish=52;
-                if(xK==xMan-2 && yK==yMan-2 && Board[xMan-1][yMan-1].equals("----"))
+                if(xK==xMan-2 && yK==yMan-2 && board[xMan-1][yMan-1].equals("----"))
                     kish=53;
-                if(xK==xMan-3 && yK==yMan-3 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----"))
+                if(xK==xMan-3 && yK==yMan-3 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----"))
                     kish=54;
-                if(xK==xMan-4 && yK==yMan-4 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----"))
+                if(xK==xMan-4 && yK==yMan-4 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----"))
                     kish=55;
-                if(xK==xMan-5 && yK==yMan-5 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----"))
+                if(xK==xMan-5 && yK==yMan-5 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----"))
                     kish=56;
-                if(xK==xMan-6 && yK==yMan-6 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----") && Board[xMan-5][yMan-5].equals("----"))
+                if(xK==xMan-6 && yK==yMan-6 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----") && board[xMan-5][yMan-5].equals("----"))
                     kish=57;
-                if(xK==xMan-7 && yK==yMan-7 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----") && Board[xMan-5][yMan-5].equals("----") && Board[xMan-6][yMan-6].equals("----"))
+                if(xK==xMan-7 && yK==yMan-7 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----") && board[xMan-5][yMan-5].equals("----") && board[xMan-6][yMan-6].equals("----"))
                     kish=58;
-                if(xK==xMan-8 && yK==yMan-8 && Board[xMan-1][yMan-1].equals("----") && Board[xMan-2][yMan-2].equals("----") && Board[xMan-3][yMan-3].equals("----") && Board[xMan-4][yMan-4].equals("----") && Board[xMan-5][yMan-5].equals("----") && Board[xMan-6][yMan-6].equals("----") && Board[xMan-7][yMan-7].equals("----"))
+                if(xK==xMan-8 && yK==yMan-8 && board[xMan-1][yMan-1].equals("----") && board[xMan-2][yMan-2].equals("----") && board[xMan-3][yMan-3].equals("----") && board[xMan-4][yMan-4].equals("----") && board[xMan-5][yMan-5].equals("----") && board[xMan-6][yMan-6].equals("----") && board[xMan-7][yMan-7].equals("----"))
                     kish=59;
                 
                 if(xK==xMan-1 && yK==yMan+1)
                     kish=60;
-                if(xK==xMan-2 && yK==yMan+2 && Board[xMan-1][yMan+1].equals("----"))
+                if(xK==xMan-2 && yK==yMan+2 && board[xMan-1][yMan+1].equals("----"))
                     kish=61;
-                if(xK==xMan-3 && yK==yMan+3 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----"))
+                if(xK==xMan-3 && yK==yMan+3 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----"))
                     kish=62;
-                if(xK==xMan-4 && yK==yMan+4 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----"))
+                if(xK==xMan-4 && yK==yMan+4 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----"))
                     kish=63;
-                if(xK==xMan-5 && yK==yMan+5 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----"))
+                if(xK==xMan-5 && yK==yMan+5 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----"))
                     kish=64;
-                if(xK==xMan-6 && yK==yMan+6 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----") && Board[xMan-5][yMan+5].equals("----"))
+                if(xK==xMan-6 && yK==yMan+6 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----") && board[xMan-5][yMan+5].equals("----"))
                     kish=65;
-                if(xK==xMan-7 && yK==yMan+7 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----") && Board[xMan-5][yMan+5].equals("----") && Board[xMan-6][yMan+6].equals("----"))
+                if(xK==xMan-7 && yK==yMan+7 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----") && board[xMan-5][yMan+5].equals("----") && board[xMan-6][yMan+6].equals("----"))
                     kish=66;
-                if(xK==xMan-8 && yK==yMan+8 && Board[xMan-1][yMan+1].equals("----") && Board[xMan-2][yMan+2].equals("----") && Board[xMan-3][yMan+3].equals("----") && Board[xMan-4][yMan+4].equals("----") && Board[xMan-5][yMan+5].equals("----") && Board[xMan-6][yMan+6].equals("----") && Board[xMan-7][yMan+7].equals("----"))
+                if(xK==xMan-8 && yK==yMan+8 && board[xMan-1][yMan+1].equals("----") && board[xMan-2][yMan+2].equals("----") && board[xMan-3][yMan+3].equals("----") && board[xMan-4][yMan+4].equals("----") && board[xMan-5][yMan+5].equals("----") && board[xMan-6][yMan+6].equals("----") && board[xMan-7][yMan+7].equals("----"))
                     kish=67;
                 
                 if(xK==xMan+1 && yK==yMan-1)
                     kish=68;
-                if(xK==xMan+2 && yK==yMan-2 && Board[xMan+1][yMan-1].equals("----"))
+                if(xK==xMan+2 && yK==yMan-2 && board[xMan+1][yMan-1].equals("----"))
                     kish=69;
-                if(xK==xMan+3 && yK==yMan-3 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----"))
+                if(xK==xMan+3 && yK==yMan-3 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----"))
                     kish=70;
-                if(xK==xMan+4 && yK==yMan-4 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----"))
+                if(xK==xMan+4 && yK==yMan-4 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----"))
                     kish=71;
-                if(xK==xMan+5 && yK==yMan-5 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----"))
+                if(xK==xMan+5 && yK==yMan-5 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----"))
                     kish=72;
-                if(xK==xMan+6 && yK==yMan-6 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----") && Board[xMan+5][yMan-5].equals("----"))
+                if(xK==xMan+6 && yK==yMan-6 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----") && board[xMan+5][yMan-5].equals("----"))
                     kish=73;
-                if(xK==xMan+7 && yK==yMan-7 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----") && Board[xMan+5][yMan-5].equals("----") && Board[xMan+6][yMan-6].equals("----"))
+                if(xK==xMan+7 && yK==yMan-7 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----") && board[xMan+5][yMan-5].equals("----") && board[xMan+6][yMan-6].equals("----"))
                     kish=74;
-                if(xK==xMan+8 && yK==yMan-8 && Board[xMan+1][yMan-1].equals("----") && Board[xMan+2][yMan-2].equals("----") && Board[xMan+3][yMan-3].equals("----") && Board[xMan+4][yMan-4].equals("----") && Board[xMan+5][yMan-5].equals("----") && Board[xMan+6][yMan-6].equals("----") && Board[xMan+7][yMan-7].equals("----"))
+                if(xK==xMan+8 && yK==yMan-8 && board[xMan+1][yMan-1].equals("----") && board[xMan+2][yMan-2].equals("----") && board[xMan+3][yMan-3].equals("----") && board[xMan+4][yMan-4].equals("----") && board[xMan+5][yMan-5].equals("----") && board[xMan+6][yMan-6].equals("----") && board[xMan+7][yMan-7].equals("----"))
                     kish=75;
                 
                 if(xK==xMan+1 && yK==yMan+1)
                     kish=76;
-                if(xK==xMan+2 && yK==yMan+2 && Board[xMan+1][yMan+1].equals("----"))
+                if(xK==xMan+2 && yK==yMan+2 && board[xMan+1][yMan+1].equals("----"))
                     kish=77;
-                if(xK==xMan+3 && yK==yMan+3 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----"))
+                if(xK==xMan+3 && yK==yMan+3 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----"))
                     kish=78;
-                if(xK==xMan+4 && yK==yMan+4 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----"))
+                if(xK==xMan+4 && yK==yMan+4 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----"))
                     kish=79;
-                if(xK==xMan+5 && yK==yMan+5 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----"))
+                if(xK==xMan+5 && yK==yMan+5 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----"))
                     kish=80;
-                if(xK==xMan+6 && yK==yMan+6 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----") && Board[xMan+5][yMan+5].equals("----"))
+                if(xK==xMan+6 && yK==yMan+6 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----") && board[xMan+5][yMan+5].equals("----"))
                     kish=81;
-                if(xK==xMan+7 && yK==yMan+7 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----") && Board[xMan+5][yMan+5].equals("----") && Board[xMan+6][yMan+6].equals("----"))
+                if(xK==xMan+7 && yK==yMan+7 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----") && board[xMan+5][yMan+5].equals("----") && board[xMan+6][yMan+6].equals("----"))
                     kish=82;
-                if(xK==xMan+8 && yK==yMan+8 && Board[xMan+1][yMan+1].equals("----") && Board[xMan+2][yMan+2].equals("----") && Board[xMan+3][yMan+3].equals("----") && Board[xMan+4][yMan+4].equals("----") && Board[xMan+5][yMan+5].equals("----") && Board[xMan+6][yMan+6].equals("----") && Board[xMan+7][yMan+7].equals("----"))
+                if(xK==xMan+8 && yK==yMan+8 && board[xMan+1][yMan+1].equals("----") && board[xMan+2][yMan+2].equals("----") && board[xMan+3][yMan+3].equals("----") && board[xMan+4][yMan+4].equals("----") && board[xMan+5][yMan+5].equals("----") && board[xMan+6][yMan+6].equals("----") && board[xMan+7][yMan+7].equals("----"))
                     kish=83;
             }
             
@@ -597,85 +614,110 @@ public class Man extends Board{
             if( xK==xMan ){
                 if(yK==yMan+1)
                     kish=84;
-                if(yK==yMan+2 && Board[xMan][yMan+1].equals("----"))
+                if(yK==yMan+2 && board[xMan][yMan+1].equals("----"))
                     kish=85;
-                if(yK==yMan+3 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----"))
+                if(yK==yMan+3 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----"))
                     kish=86;
-                if(yK==yMan+4 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----"))
+                if(yK==yMan+4 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----"))
                     kish=87;
-                if(yK==yMan+5 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----"))
+                if(yK==yMan+5 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----"))
                     kish=88;
-                if(yK==yMan+6 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----") && Board[xMan][yMan+5].equals("----"))
+                if(yK==yMan+6 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----") && board[xMan][yMan+5].equals("----"))
                     kish=89;
-                if(yK==yMan+7 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----") && Board[xMan][yMan+5].equals("----") && Board[xMan][yMan+6].equals("----"))
+                if(yK==yMan+7 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----") && board[xMan][yMan+5].equals("----") && board[xMan][yMan+6].equals("----"))
                     kish=90;
-                if(yK==yMan+8 && Board[xMan][yMan+1].equals("----") && Board[xMan][yMan+2].equals("----") && Board[xMan][yMan+3].equals("----") && Board[xMan][yMan+4].equals("----") && Board[xMan][yMan+5].equals("----") && Board[xMan][yMan+6].equals("----") && Board[xMan][yMan+7].equals("----"))
+                if(yK==yMan+8 && board[xMan][yMan+1].equals("----") && board[xMan][yMan+2].equals("----") && board[xMan][yMan+3].equals("----") && board[xMan][yMan+4].equals("----") && board[xMan][yMan+5].equals("----") && board[xMan][yMan+6].equals("----") && board[xMan][yMan+7].equals("----"))
                     kish=91;
                 
                 if(yK==yMan-1)
                     kish=92;
-                if(yK==yMan-2 && Board[xMan][yMan-1].equals("----"))
+                if(yK==yMan-2 && board[xMan][yMan-1].equals("----"))
                     kish=93;
-                if(yK==yMan-3 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----"))
+                if(yK==yMan-3 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----"))
                     kish=94;
-                if(yK==yMan-4 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----"))
+                if(yK==yMan-4 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----"))
                     kish=95;
-                if(yK==yMan-5 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----"))
+                if(yK==yMan-5 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----"))
                     kish=96;
-                if(yK==yMan-6 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----") && Board[xMan][yMan-5].equals("----"))
+                if(yK==yMan-6 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----") && board[xMan][yMan-5].equals("----"))
                     kish=97;
-                if(yK==yMan-7 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----") && Board[xMan][yMan-5].equals("----") && Board[xMan][yMan-6].equals("----"))
+                if(yK==yMan-7 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----") && board[xMan][yMan-5].equals("----") && board[xMan][yMan-6].equals("----"))
                     kish=98;
-                if(yK==yMan-8 && Board[xMan][yMan-1].equals("----") && Board[xMan][yMan-2].equals("----") && Board[xMan][yMan-3].equals("----") && Board[xMan][yMan-4].equals("----") && Board[xMan][yMan-5].equals("----") && Board[xMan][yMan-6].equals("----") && Board[xMan][yMan-7].equals("----"))
+                if(yK==yMan-8 && board[xMan][yMan-1].equals("----") && board[xMan][yMan-2].equals("----") && board[xMan][yMan-3].equals("----") && board[xMan][yMan-4].equals("----") && board[xMan][yMan-5].equals("----") && board[xMan][yMan-6].equals("----") && board[xMan][yMan-7].equals("----"))
                     kish=99;
             }
             
             if( yK==yMan ){
                 if(xK==xMan+1)
                     kish=100;
-                if(xK==xMan+2 && Board[xMan+1][yMan].equals("----"))
+                if(xK==xMan+2 && board[xMan+1][yMan].equals("----"))
                     kish=101;
-                if(xK==xMan+3 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----"))
+                if(xK==xMan+3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=102;
-                if(xK==xMan+4 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----"))
+                if(xK==xMan+4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=103;
-                if(xK==xMan+5 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----"))
+                if(xK==xMan+5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=104;
-                if(xK==xMan+6 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----"))
+                if(xK==xMan+6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=105;
-                if(xK==xMan+7 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----"))
+                if(xK==xMan+7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=106;
-                if(xK==xMan+8 && Board[xMan+1][yMan].equals("----") && Board[xMan+2][yMan].equals("----") && Board[xMan+3][yMan].equals("----") && Board[xMan+4][yMan].equals("----") && Board[xMan+5][yMan].equals("----") && Board[xMan+6][yMan].equals("----") && Board[xMan+7][yMan].equals("----"))
+                if(xK==xMan+8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=107;
                 
                 if(xK==xMan-1)
                     kish=108;
-                if(xK==xMan-2 && Board[xMan-1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan-1][yMan].equals("----"))
                     kish=109;
-                if(xK==xMan-3 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----"))
                     kish=110;
-                if(xK==xMan-4 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----"))
                     kish=111;
-                if(xK==xMan-5 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----"))
                     kish=112;
-                if(xK==xMan-6 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----") && Board[xMan-5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----"))
                     kish=113;
-                if(xK==xMan-7 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----") && Board[xMan-5][yMan].equals("----") && Board[xMan-6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----"))
                     kish=114;
-                if(xK==xMan-8 && Board[xMan-1][yMan].equals("----") && Board[xMan-2][yMan].equals("----") && Board[xMan-3][yMan].equals("----") && Board[xMan-4][yMan].equals("----") && Board[xMan-5][yMan].equals("----") && Board[xMan-6][yMan].equals("----") && Board[xMan-7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----") && board[xMan-7][yMan].equals("----"))
                     kish=115;
-            }
-            
-            
+            }   
         }              
             
-        
-         
-    
-    
-    
+        return kish;
     }
     
+    public static int fixKish(String[] change){
+        
+        change[0]="-1";
+        change[1]="-1";
+        change[2]="-1";
+        int fKish;
+        int changed = Integer.parseInt(change[0]);
+        String temp;
+        if(changed != -1){
+            temp=board[i][j];
+            board[i][j]=board[changed/10][changed%10];
+            board[changed/10][changed%10]=temp;
+            fKish=isKish();
+            
+            board[changed/10][changed%10]=board[i][j];
+            board[i][j]=temp;
+            
+            if(fKish!=-1)
+                return 1;
+        }
+        
+        
+        return -1;   // spurious
+    }
     
+    public static void status(){
+        
+        int checkMate;
+        int move;
+        checkMate = isKish();
+        
+    }
     
 }
