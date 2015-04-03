@@ -17,28 +17,24 @@ import java.util.Scanner;
  */
 public class Board {
     
-    static String[][] board;
-    static int player;
-    static int selection;
-    static Scanner scan;
-    static LinkedList list;
+    static String[][] board = new String[9][9];
+    static int player = 0;
+    static int selection = 0;
+    static Scanner scan = new Scanner(System.in);
+    static LinkedList list = new LinkedList();
     private LinkedList save1;
     private LinkedList save2;
     
     
     public Board(){
         
-        board = new String[9][9];
-        player = 0;
-        selection=0;
-        scan = new Scanner(System.in);
-        list =new LinkedList();
-        list.add(0);
         save1=new LinkedList();
         save2=new LinkedList();
     }
     
     public void firstData(){
+        
+        list.add(0);
         
         for(int i=1; i<8; i++)
             for(int j=0; j<9; j++)
@@ -115,7 +111,7 @@ public class Board {
         for (Object save22 : save2) {
             System.out.print(save22 + "  ,");
         }
-        System.out.println("");
+        System.out.println("\n");
     }
     
     
@@ -135,7 +131,7 @@ public class Board {
         int ch;
     
         player++;
-        System.out.println(   "Player" + player +" :\n\n");
+        System.out.println(   "Player" + player +" , it is your turn , please select:");
         if(player%2==1){
 
             for( i=0; i<9; i++)

@@ -7,12 +7,15 @@ package shogi;
 
 import static shogi.Board.board;
 
+
 /**
  *
  * @author Ali salmani
  */
 public class Shogi {
 
+
+    
     /**
      * @param args the command line arguments
      */
@@ -23,8 +26,8 @@ public class Shogi {
         board1.firstData();
         board1.print();
         Man man = new Man();
-        //man.setBoardList();
-        System.out.println(board[0][0]);
+        man.setBoardList();
+
 
         for(int cun=0; ;cun++){
             

@@ -6,7 +6,7 @@
 package shogi;
 
 import java.util.LinkedList;
-
+import static shogi.Board.board;
 /**
  *
  * @author Ali salmani
@@ -14,33 +14,24 @@ import java.util.LinkedList;
 public class Man extends Board{
     
     
-    static int i;
-    static int j;
-    static int xK;
-    static int yK;
-    static int xMan;
-    static int yMan;
-    static int kish;
-    static String[] change;
+    static int i=0;
+    static int j=0;
+    static int xK=0;
+    static int yK=0;
+    static int xMan=0;
+    static int yMan=0;
+    static int kish=-1;
+    static String[] change = new String [4];;
     private String allBoard;
-    static LinkedList<String> boardList;
+    static LinkedList<String> boardList = new LinkedList<String>();
     
     public Man(){
         
-        i=0;
-        j=0;
-        xK=0;
-        yK=0;
-        xMan=0;
-        yMan=0;
-        kish=-1;
-        change = new String [4];
         change[0]="*";
         change[1]="*";
         change[2]="*";
         change[3]="*";
         allBoard="-";
-        boardList= new LinkedList<String>();
 
     }
     
@@ -749,7 +740,7 @@ public class Man extends Board{
         
         
     }
-    
+   
     public void setBoardList(){
         
         allBoard=board[0][0];
@@ -769,10 +760,10 @@ public class Man extends Board{
         
         if(cun>=12 && boardList.get(cun).equals(boardList.get(cun-4))
                    && boardList.get(cun).equals(boardList.get(cun-8))
-                   && boardList.get(cun).equals(boardList.get(cun-12))  );
+                   && boardList.get(cun).equals(boardList.get(cun-12))  ){
         
             System.out.println("The game is EQUAL");
             System.exit(0);
-        
+        }
     }
 }
