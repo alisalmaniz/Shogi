@@ -5,6 +5,8 @@
  */
 package shogi;
 
+import static shogi.Board.board;
+
 /**
  *
  * @author Ali salmani
@@ -19,13 +21,27 @@ public class Shogi {
         
         Board board1 = new Board();
         board1.firstData();
-        
-
+        board1.print();
         Man man = new Man();
-        B b =new B();
+        //man.setBoardList();
+        System.out.println(board[0][0]);
 
+        for(int cun=0; ;cun++){
+            
+            man.win();
+            man.equal();
+            man.isBoardListEqual(cun);
+            board1.showMenu();
+            board1.operator();
+            board1.print();
+            
+            
+        }
         
         
+        
+        
+        //board1.operator(  board1.showMenu()  );
         
         
     }

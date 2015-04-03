@@ -5,11 +5,14 @@
  */
 package shogi;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Ali salmani
  */
 public class Man extends Board{
+    
     
     static int i;
     static int j;
@@ -19,6 +22,8 @@ public class Man extends Board{
     static int yMan;
     static int kish;
     static String[] change;
+    private String allBoard;
+    static LinkedList<String> boardList;
     
     public Man(){
         
@@ -29,10 +34,13 @@ public class Man extends Board{
         xMan=0;
         yMan=0;
         kish=-1;
-        change = new String [3];
+        change = new String [4];
         change[0]="*";
         change[1]="*";
         change[2]="*";
+        change[3]="*";
+        allBoard="-";
+        boardList= new LinkedList<String>();
 
     }
     
@@ -52,12 +60,11 @@ public class Man extends Board{
     
 
     
-    public static int search(String Man12 , char ij){
+    public static int search(String man12 , char ij){
         
-        searchfor:
             for( i=0; i<9; i++)
                 for( j=0; j<9; j++)
-                    if(board[i][j].equals(Man12))
+                    if(man12.equals(board[i][j]))
                         return ij=='i' ? i : j;
         return -1;
                         
@@ -712,12 +719,60 @@ public class Man extends Board{
         return -1;   // spurious
     }
     
-    public static void status(){
+    public void win(){
         
-        int checkMate;
-        int move;
-        checkMate = isKish();
+        int kish;
+        kish=isKish();
+        if(kish!=0 && list.size()==0){
+            System.out.println("Player "+ (player%2==1? 1:2) + "  WON.");
+            System.exit(0);
+        }
+    }
+    
+    public void equal(){
+        
+        int q=0;
+        for(int i=0; i<9; i++)
+            for(int j=0; j<9; j++)
+                if(board[i][j].charAt(1)!='K' && board[i][j]!="----")
+                    q++;
+        
+        if(q==0){
+            System.out.println("The game is EQUAL");
+            System.exit(0);
+        }
+        
+        if(kish==0 && list.size()==0){
+            System.out.println("The game is EQUAL");
+            System.exit(0);
+        }
+        
         
     }
     
+    public void setBoardList(){
+        
+        allBoard=board[0][0];
+        allBoard.concat(".");
+        
+        for(int i=0; i<9; i++)
+            for(int j=1; j<9; j++){
+                allBoard.concat(board[i][j]);
+                allBoard.concat(".");
+            }
+        boardList.add(allBoard);
+        //for(int cun=0; ;cun++)
+        //if(cun>=12 && boardList.get(cun).equals(boardList.get(cun-4)) && boardList.get(cun).equals(boardList.get(cun-8)) && boardList.get(cun).equals(boardList.get(cun-12))  );
+    }
+
+    public void isBoardListEqual(int cun){
+        
+        if(cun>=12 && boardList.get(cun).equals(boardList.get(cun-4))
+                   && boardList.get(cun).equals(boardList.get(cun-8))
+                   && boardList.get(cun).equals(boardList.get(cun-12))  );
+        
+            System.out.println("The game is EQUAL");
+            System.exit(0);
+        
+    }
 }
