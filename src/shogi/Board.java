@@ -131,12 +131,33 @@ public class Board {
         int ch;
     
         player++;
-        System.out.println(   "Player" + player +" , it is your turn , please select:");
+        System.out.println(   "Player" + (player%2==1?1:0) +" , it is your turn , please select:");
         if(player%2==1){
 
             for( i=0; i<9; i++)
                 for( j=0; j<9; j++){
                     if(board[i][j].charAt(1)=='1' || board[i][j].charAt(2)=='1'){
+                        
+               //         kish=Man.isKish();
+                        changed=Man.moveMan(board[i][j]);
+                        for(int cun=0; cun < Integer.parseInt(changed[3]); cun++){
+                            changed=Man.moveMan(board[i][j]);
+                            fix=Man.fixKish(changed);
+                            if(fix==1 && cun==0)
+                                System.out.println(board[i][j]+" :");
+                            if(fix==1){
+                                ch=Integer.parseInt(changed[0]);
+                                System.out.println(i + j + ch/10 + ch%10 +". move to (" +(ch/10+1) +","+ (ch%10+1)+") position");
+                                list.add(i*1000 + j*100 + ch);
+                            }
+                        }
+                    }
+                }
+        }
+        else{
+            for( i=0; i<9; i++)
+                for( j=0; j<9; j++){
+                    if(board[i][j].charAt(1)=='2' || board[i][j].charAt(2)=='2'){
                         
                //         kish=Man.isKish();
                         changed=Man.moveMan(board[i][j]);
@@ -148,15 +169,8 @@ public class Board {
                             System.out.println(i + j + ch/10 + ch%10 +". move to (" +(ch/10+1) +","+ (ch%10+1)+") position");
                             list.add(i*1000 + j*100 + ch);
                         }
-                        
-                        
                     }
-
-
                 }
-        }
-        else{
-            
             
         }
         

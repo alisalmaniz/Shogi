@@ -26,11 +26,7 @@ public class Man extends Board{
     static LinkedList<String> boardList = new LinkedList<String>();
     
     public Man(){
-        
-        change[0]="*";
-        change[1]="*";
-        change[2]="*";
-        change[3]="*";
+
         allBoard="-";
 
     }
@@ -40,10 +36,37 @@ public class Man extends Board{
         change[0]="*";
         change[1]="*";
         change[2]="*";
+        change[3]="*";
         
         if(man.charAt(0)=='P')
             return P.move(man);
-        //else if(man.charAt(0)=='L')
+        else if(man.charAt(0)=='L')
+            return L.move(man);
+        else if(man.charAt(0)=='N')
+            return N.move(man);
+        else if(man.charAt(0)=='S')
+            return S.move(man);
+        else if(man.charAt(0)=='G')
+            return G.move(man);
+        else if(man.charAt(1)=='B')
+            return B.move(man);
+        else if(man.charAt(1)=='R')
+            return R.move(man);
+        else if(man.charAt(0)=='P' || man.charAt(1)=='P')
+            return PP.move(man);
+        else if(man.charAt(0)=='L' || man.charAt(1)=='L')
+            return LL.move(man);
+        else if(man.charAt(0)=='N' || man.charAt(1)=='N')
+            return NN.move(man);
+        else if(man.charAt(0)=='S' || man.charAt(1)=='S')
+            return SS.move(man);
+        else if(man.charAt(1)=='B' || man.charAt(0)=='B')
+            return BB.move(man);
+        else if(man.charAt(1)=='R' || man.charAt(0)=='R')
+            return RR.move(man);
+
+            
+            
             
         return change;    //spurious
     }
@@ -116,51 +139,51 @@ public class Man extends Board{
             
             xMan = search("L2.a" , 'i');
             yMan = search("L2.a" , 'j');
-            if(xK > xMan && yK==yMan){
+            if(xK < xMan && yK==yMan){
                 if(xK==xMan-1)
                     kish=10;
-                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan-1][yMan].equals("----"))
                     kish=11;
-                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----"))
                     kish=12;
-                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----"))
                     kish=13;
-                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----"))
                     kish=14;
-                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----"))
                     kish=15;
-                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----"))
                     kish=16;
-                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----") && board[xMan-7][yMan].equals("----"))
                     kish=17;
             }
             
             xMan = search("L2.b" , 'i');
             yMan = search("L2.b" , 'j');
-            if(xK > xMan && yK==yMan){
+            if(xK < xMan && yK==yMan){
                 if(xK==xMan-1)
                     kish=18;
-                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
+                if(xK==xMan-2 && board[xMan-1][yMan].equals("----"))
                     kish=19;
-                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
+                if(xK==xMan-3 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----"))
                     kish=20;
-                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
+                if(xK==xMan-4 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----"))
                     kish=21;
-                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
+                if(xK==xMan-5 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----"))
                     kish=22;
-                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
+                if(xK==xMan-6 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----"))
                     kish=23;
-                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
+                if(xK==xMan-7 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----"))
                     kish=24;
-                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
+                if(xK==xMan-8 && board[xMan-1][yMan].equals("----") && board[xMan-2][yMan].equals("----") && board[xMan-3][yMan].equals("----") && board[xMan-4][yMan].equals("----") && board[xMan-5][yMan].equals("----") && board[xMan-6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=25;
             }
             
             xMan = search("N2.a" , 'i');
             yMan = search("N2.a" , 'j');
-            if(xK == xMan-2 && yK==yMan+1)
-                kish=26;
             if(xK == xMan-2 && yK==yMan-1)
+                kish=26;
+            if(xK == xMan-2 && yK==yMan+1)
                 kish=27;
             
             xMan = search("N2.b" , 'i');
@@ -380,159 +403,159 @@ public class Man extends Board{
             
             xMan = search("P1.a" , 'i');
             yMan = search("P1.a" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=1;
             
             xMan = search("P1.b" , 'i');
             yMan = search("P1.b" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=2;
             
             xMan = search("P1.c" , 'i');
             yMan = search("P1.c" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=3;
             
             xMan = search("P1.d" , 'i');
             yMan = search("P1.d" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=4;
             
             xMan = search("P1.e" , 'i');
             yMan = search("P1.e" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=5;
             
             xMan = search("P1.f" , 'i');
             yMan = search("P1.f" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=6;
             
             xMan = search("P1.g" , 'i');
             yMan = search("P1.g" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=7;
             
             xMan = search("P1.h" , 'i');
             yMan = search("P1.h" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=8;
             
             xMan = search("P1.i" , 'i');
             yMan = search("P1.i" , 'j');
-            if(yK==yMan && xK == xMan-1)
+            if(yK==yMan && xK == xMan+1)
                 kish=9;
             
             xMan = search("L1.a" , 'i');
             yMan = search("L1.a" , 'j');
             if(xK > xMan && yK==yMan){
-                if(xK==xMan-1)
+                if(xK==xMan+1)
                     kish=10;
-                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
+                if(xK==xMan+2 && board[xMan+1][yMan].equals("----"))
                     kish=11;
-                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
+                if(xK==xMan+3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=12;
-                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
+                if(xK==xMan+4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=13;
-                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
+                if(xK==xMan+5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=14;
-                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
+                if(xK==xMan+6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=15;
-                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
+                if(xK==xMan+7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=16;
-                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
+                if(xK==xMan+8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=17;
             }
             
             xMan = search("L1.b" , 'i');
             yMan = search("L1.b" , 'j');
             if(xK > xMan && yK==yMan){
-                if(xK==xMan-1)
+                if(xK==xMan+1)
                     kish=18;
-                if(xK==xMan-2 && board[xMan+1][yMan].equals("----"))
+                if(xK==xMan+2 && board[xMan+1][yMan].equals("----"))
                     kish=19;
-                if(xK==xMan-3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
+                if(xK==xMan+3 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----"))
                     kish=20;
-                if(xK==xMan-4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
+                if(xK==xMan+4 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----"))
                     kish=21;
-                if(xK==xMan-5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
+                if(xK==xMan+5 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----"))
                     kish=22;
-                if(xK==xMan-6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
+                if(xK==xMan+6 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----"))
                     kish=23;
-                if(xK==xMan-7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
+                if(xK==xMan+7 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----"))
                     kish=24;
-                if(xK==xMan-8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
+                if(xK==xMan+8 && board[xMan+1][yMan].equals("----") && board[xMan+2][yMan].equals("----") && board[xMan+3][yMan].equals("----") && board[xMan+4][yMan].equals("----") && board[xMan+5][yMan].equals("----") && board[xMan+6][yMan].equals("----") && board[xMan+7][yMan].equals("----"))
                     kish=25;
             }
             
             xMan = search("N1.a" , 'i');
             yMan = search("N1.a" , 'j');
-            if(xK == xMan-2 && yK==yMan+1)
+            if(xK == xMan+2 && yK==yMan+1)
                 kish=26;
-            if(xK == xMan-2 && yK==yMan-1)
+            if(xK == xMan+2 && yK==yMan-1)
                 kish=27;
             
             xMan = search("N1.b" , 'i');
             yMan = search("N1.b" , 'j');
-            if(xK == xMan-2 && yK==yMan+1)
+            if(xK == xMan+2 && yK==yMan+1)
                 kish=28;
-            if(xK == xMan-2 && yK==yMan-1)
+            if(xK == xMan+2 && yK==yMan-1)
                 kish=29;
             
             xMan = search("S1.a" , 'i');
             yMan = search("S1.a" , 'j');
-            if(xK == xMan-1 && yK==yMan)
+            if(xK == xMan+1 && yK==yMan)
                 kish=30;
-            if(xK == xMan-1 && yK==yMan-1)
-                kish=31;
-            if(xK == xMan-1 && yK==yMan+1)
-                kish=32;
-            if(xK == xMan+1 && yK==yMan+1)
-                kish=33;
             if(xK == xMan+1 && yK==yMan-1)
+                kish=31;
+            if(xK == xMan+1 && yK==yMan+1)
+                kish=32;
+            if(xK == xMan-1 && yK==yMan+1)
+                kish=33;
+            if(xK == xMan-1 && yK==yMan-1)
                 kish=34;
             
             xMan = search("S1.b" , 'i');
             yMan = search("S1.b" , 'j');
-            if(xK == xMan-1 && yK==yMan)
+            if(xK == xMan+1 && yK==yMan)
                 kish=35;
-            if(xK == xMan-1 && yK==yMan-1)
-                kish=36;
-            if(xK == xMan-1 && yK==yMan+1)
-                kish=37;
-            if(xK == xMan+1 && yK==yMan+1)
-                kish=38;
             if(xK == xMan+1 && yK==yMan-1)
+                kish=36;
+            if(xK == xMan+1 && yK==yMan+1)
+                kish=37;
+            if(xK == xMan-1 && yK==yMan+1)
+                kish=38;
+            if(xK == xMan-1 && yK==yMan-1)
                 kish=39;
             
             xMan = search("G1.a" , 'i');
             yMan = search("G1.a" , 'j');
-            if(xK == xMan-1 && yK==yMan)
+            if(xK == xMan+1 && yK==yMan)
                 kish=40;
-            if(xK == xMan-1 && yK==yMan-1)
+            if(xK == xMan+1 && yK==yMan-1)
                 kish=41;
-            if(xK == xMan-1 && yK==yMan+1)
+            if(xK == xMan+1 && yK==yMan+1)
                 kish=42;
             if(xK == xMan && yK==yMan-1)
                 kish=43;
             if(xK == xMan && yK==yMan+1)
                 kish=44;
-            if(xK == xMan+1 && yK==yMan)
+            if(xK == xMan-1 && yK==yMan)
                 kish=45;
             
             xMan = search("G1.b" , 'i');
             yMan = search("G1.b" , 'j');
-            if(xK == xMan-1 && yK==yMan)
+            if(xK == xMan+1 && yK==yMan)
                 kish=46;
-            if(xK == xMan-1 && yK==yMan-1)
+            if(xK == xMan+1 && yK==yMan-1)
                 kish=47;
-            if(xK == xMan-1 && yK==yMan+1)
+            if(xK == xMan+1 && yK==yMan+1)
                 kish=48;
             if(xK == xMan && yK==yMan-1)
                 kish=49;
             if(xK == xMan && yK==yMan+1)
                 kish=50;
-            if(xK == xMan+1 && yK==yMan)
+            if(xK == xMan-1 && yK==yMan)
                 kish=51;
             
             xMan = search(" B1 " , 'i');
@@ -686,10 +709,7 @@ public class Man extends Board{
     }
     
     public static int fixKish(String[] change){
-        
-        change[0]="-1";
-        change[1]="-1";
-        change[2]="-1";
+
         int fKish;
         int changed = Integer.parseInt(change[0]);
         String temp;
@@ -714,7 +734,7 @@ public class Man extends Board{
         
         int kish;
         kish=isKish();
-        if(kish!=0 && list.size()==0){
+        if(kish!=-1 && list.size()==0){
             System.out.println("Player "+ (player%2==1? 1:2) + "  WON.");
             System.exit(0);
         }
@@ -733,7 +753,7 @@ public class Man extends Board{
             System.exit(0);
         }
         
-        if(kish==0 && list.size()==0){
+        if(kish==-1 && list.size()==0){
             System.out.println("The game is EQUAL");
             System.exit(0);
         }
