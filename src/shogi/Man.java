@@ -36,7 +36,7 @@ public class Man extends Board{
         change[0]="*";
         change[1]="*";
         change[2]="*";
-        change[3]="*";
+        change[3]="0";
         
         if(man.charAt(0)=='P')
             return P.move(man);
@@ -722,7 +722,7 @@ public class Man extends Board{
             board[changed/10][changed%10]=board[i][j];
             board[i][j]=temp;
             
-            if(fKish!=-1)
+            if(fKish == -1) //shows thad it is not kish.
                 return 1;
         }
         

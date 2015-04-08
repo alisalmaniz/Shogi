@@ -139,10 +139,11 @@ public class Board {
                     if(board[i][j].charAt(1)=='1' || board[i][j].charAt(2)=='1'){
                         
                //         kish=Man.isKish();
-                        changed=Man.moveMan(board[i][j]);
-                        for(int cun=0; cun < Integer.parseInt(changed[3]); cun++){
+                        changed[3]="";
+                        for(int cun=0; !(changed[3].endsWith("*")) ; cun++){
                             changed=Man.moveMan(board[i][j]);
                             fix=Man.fixKish(changed);
+                            //System.out.println(fix);
                             if(fix==1 && cun==0)
                                 System.out.println(board[i][j]+" :");
                             if(fix==1){

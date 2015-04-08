@@ -14,78 +14,80 @@ public class G extends Man{
     
     public static String[] move( String p){
         
-        int change3=0;
         change[0]="-1";
         change[1]="-1";
         change[2]="-1";
-        change[3]="0";
+        
         
         if(board[i][j].charAt(1)=='1'){
-            if(i+1<9 && (board[i+1][j].equals("----") || board[i+1][j].charAt(1)=='2' || board[i+1][j].charAt(2)=='2') ){
+            if( !change[3].contains("a") && i+1<9 && (board[i+1][j].equals("----") || board[i+1][j].charAt(1)=='2' || board[i+1][j].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*(i+1)+j);
                 change[1]=board[i+1][j];
-                change3++;
+                change[3].concat("a");
             }
-            if((i+1<9 && j+1<9) && (board[i+1][j+1].equals("----") || board[i+1][j+1].charAt(1)=='2' || board[i+1][j+1].charAt(2)=='2') ){
+            else if( !change[3].contains("b") && (i+1<9 && j+1<9) && (board[i+1][j+1].equals("----") || board[i+1][j+1].charAt(1)=='2' || board[i+1][j+1].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*(i+1)+(j+1));
                 change[1]=board[i+1][j+1];
-                change3++;
+                change[3].concat("b");
             }
-            if((i+1<9 && j-1>=0) && (board[i+1][j-1].equals("----") || board[i+1][j-1].charAt(1)=='2' || board[i+1][j-1].charAt(2)=='2') ){
+            else if( !change[3].contains("c") && (i+1<9 && j-1>=0) && (board[i+1][j-1].equals("----") || board[i+1][j-1].charAt(1)=='2' || board[i+1][j-1].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*(i+1)+(j-1));
                 change[1]=board[i+1][j-1];
-                change3++;
+                change[3].concat("c");
             }
-            if( j-1>=0 && (board[i][j-1].equals("----") || board[i][j-1].charAt(1)=='2' || board[i][j-1].charAt(2)=='2') ){
+            else if( !change[3].contains("d") &&  j-1>=0 && (board[i][j-1].equals("----") || board[i][j-1].charAt(1)=='2' || board[i][j-1].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*i+(j-1));
                 change[1]=board[i][j-1];
-                change3++;
+                change[3].concat("d");
             }
-            if( j+1>=0 && (board[i][j+1].equals("----") || board[i][j+1].charAt(1)=='2' || board[i][j+1].charAt(2)=='2') ){
+            else if( !change[3].contains("e") &&  j+1>=0 && (board[i][j+1].equals("----") || board[i][j+1].charAt(1)=='2' || board[i][j+1].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*i+(j+1));
                 change[1]=board[i][j+1];
-                change3++;
+                change[3].concat("e");
             }
-            if(i-1>=0 && (board[i-1][j].equals("----") || board[i-1][j].charAt(1)=='2' || board[i-1][j].charAt(2)=='2') ){
+            else if( !change[3].contains("f") && i-1>=0 && (board[i-1][j].equals("----") || board[i-1][j].charAt(1)=='2' || board[i-1][j].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*(i-1)+j);
                 change[1]=board[i-1][j];
-                change3++;
+                change[3].concat("f");
             }
+            else
+                change[3].concat("*");
         }
         else{
-            if(i-1>=0 && (board[i-1][j].equals("----") || board[i-1][j].charAt(1)=='1' || board[i-1][j].charAt(2)=='1') ){
+            if( !change[3].contains("a") && i-1>=0 && (board[i-1][j].equals("----") || board[i-1][j].charAt(1)=='1' || board[i-1][j].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*(i-1)+j);
                 change[1]=board[i-1][j];
-                change3++;
+                change[3].concat("a");
             }
-            if( j+1<9 && (board[i][j+1].equals("----") || board[i][j+1].charAt(1)=='1' || board[i][j+1].charAt(2)=='1') ){
+            else if( !change[3].contains("b") &&  j+1<9 && (board[i][j+1].equals("----") || board[i][j+1].charAt(1)=='1' || board[i][j+1].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*i+(j+1));
                 change[1]=board[i][j+1];
-                change3++;
+                change[3].concat("b");
             }
-            if(j-1>=0 && (board[i][j-1].equals("----") || board[i][j-1].charAt(1)=='1' || board[i][j-1].charAt(2)=='1') ){
+            else if( !change[3].contains("c") && j-1>=0 && (board[i][j-1].equals("----") || board[i][j-1].charAt(1)=='1' || board[i][j-1].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*i+(j-1));
                 change[1]=board[i][j-1];
-                change3++;
+                change[3].concat("c");
             }
-            if((i-1>=0 && j-1>=0) && (board[i-1][j-1].equals("----") || board[i-1][j-1].charAt(1)=='1' || board[i-1][j-1].charAt(2)=='1') ){
+            else if( !change[3].contains("d") && (i-1>=0 && j-1>=0) && (board[i-1][j-1].equals("----") || board[i-1][j-1].charAt(1)=='1' || board[i-1][j-1].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*(i-1)+(j-1));
                 change[1]=board[i-1][j-1];
-                change3++;
+                change[3].concat("d");
             }
-            if((i-1>=0 && j+1>=0) && (board[i-1][j+1].equals("----") || board[i-1][j+1].charAt(1)=='1' || board[i-1][j+1].charAt(2)=='1') ){
+            else if( !change[3].contains("e") && (i-1>=0 && j+1>=0) && (board[i-1][j+1].equals("----") || board[i-1][j+1].charAt(1)=='1' || board[i-1][j+1].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*(i-1)+(j+1));
                 change[1]=board[i-1][j+1];
-                change3++;
+                change[3].concat("e");
             }
-            if(i+1<9 && (board[i+1][j].equals("----") || board[i+1][j].charAt(1)=='1' || board[i+1][j].charAt(2)=='1') ){
+            else if( !change[3].contains("f") && i+1<9 && (board[i+1][j].equals("----") || board[i+1][j].charAt(1)=='1' || board[i+1][j].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*(i+1)+j);
                 change[1]=board[i+1][j];
-                change3++;
+                change[3].concat("f");
             }
+            else
+                change[3].concat("*");
         }
                 
-        change[3]=String.valueOf(change3);
         return change;
     }
     

@@ -43,7 +43,6 @@ public class Shogi {
         
         
         
-        
         //board1.operator(  board1.showMenu()  );
         
         
