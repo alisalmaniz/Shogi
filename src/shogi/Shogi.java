@@ -21,21 +21,22 @@ public class Shogi {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        Man man = new Man();
         Board board1 = new Board();
         board1.firstData();
         board1.print();
-        Man man = new Man();
+        
         man.setBoardList();
 
 
-        for(int cun=0; ;cun++){
+        for(int cunt=0; ;cunt++){
             
             man.win();
             man.equal();
-            man.isBoardListEqual(cun);
+            man.isBoardListEqual(cunt);
             board1.showMenu();
             board1.operator();
+            System.out.println("");
             board1.print();
             
             

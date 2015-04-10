@@ -24,19 +24,19 @@ public class LL extends Man{
             if( !change[3].contains("a") && i+1<9 && (board[i+1][j].equals("----") || board[i+1][j].charAt(1)=='2' || board[i+1][j].charAt(2)=='2') ){
                 change[0]=String.valueOf(10*(i+1)+j);
                 change[1]=board[i+1][j];
-                change[3].concat("a");
+                change[3]=change[3].concat("a");
             }
             else
-                change[3].concat("*");
+                change[3]=change[3].concat("*");
         }
         else{
             if( !change[3].contains("a") && i-1>=0 && (board[i-1][j].equals("----") || board[i-1][j].charAt(1)=='1' || board[i-1][j].charAt(2)=='1') ){
                 change[0]=String.valueOf(10*(i-1)+j);
                 change[1]=board[i-1][j];
-                change[3].concat("a");
+                change[3]=change[3].concat("a");
             }
             else
-                change[3].concat("*");
+                change[3]=change[3].concat("*");
         }
                 
 

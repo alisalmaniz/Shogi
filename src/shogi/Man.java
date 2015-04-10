@@ -21,23 +21,19 @@ public class Man extends Board{
     static int xMan=0;
     static int yMan=0;
     static int kish=-1;
-    static String[] change = new String [4];;
+    static String[] change = new String [4] ;
     private String allBoard;
+    static int i2=0;
+    static int j2=0;
     static LinkedList<String> boardList = new LinkedList<String>();
     
     public Man(){
 
         allBoard="-";
-
+        change[3]="";
     }
     
     public static String[] moveMan( String man){
-        
-        change[0]="*";
-        change[1]="*";
-        change[2]="*";
-        change[3]="0";
-        
         if(man.charAt(0)=='P')
             return P.move(man);
         else if(man.charAt(0)=='L')
@@ -52,6 +48,8 @@ public class Man extends Board{
             return B.move(man);
         else if(man.charAt(1)=='R')
             return R.move(man);
+        else if(man.charAt(1)=='K')
+            return K.move(man);
         else if(man.charAt(0)=='P' || man.charAt(1)=='P')
             return PP.move(man);
         else if(man.charAt(0)=='L' || man.charAt(1)=='L')
@@ -709,7 +707,8 @@ public class Man extends Board{
     }
     
     public static int fixKish(String[] change){
-
+        
+       
         int fKish;
         int changed = Integer.parseInt(change[0]);
         String temp;
@@ -717,8 +716,11 @@ public class Man extends Board{
             temp=board[i][j];
             board[i][j]=board[changed/10][changed%10];
             board[changed/10][changed%10]=temp;
+            i2=i;
+            j2=j;
             fKish=isKish();
-            
+            i=i2;
+            j=j2;
             board[changed/10][changed%10]=board[i][j];
             board[i][j]=temp;
             
